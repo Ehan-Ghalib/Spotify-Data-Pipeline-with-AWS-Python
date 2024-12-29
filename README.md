@@ -1,40 +1,34 @@
-# AWS + Snowflake + Serverless: A Cloud-Native Near Real-Time Data Pipeline for Spotify API
+# Build Scalable Data Engineering Pipeline with API Integration on AWS Using Python
 
 ## Project Overview
 
-Designed and implemented a cloud-native pipeline to ingest, transform, and analyze Spotify playlist data for the Top 100 songs. This architecture leverages AWS services for automated scaling, alongside Snowflake for efficient data warehousing.
+Designed and implemented a cloud-native data pipeline to ingest, transform, and analyze Spotify playlist data for the Top 100 songs. The pipeline leverages Amazon Web Services (AWS) to ensure scalability, automation, and efficiency.
 
 ## Architecture Diagram
 
-![Data Pipeline Architecture Diagram](https://github.com/Ehan-Ghalib/Spotify-Data-Pipeline-with-AWS-Snowflake/blob/53b8593231d3e6c135a393e3a84f5ba447fd06a9/Spotify%20AWS-Snowflake%20Pipeline%20Architecture%20Diagram.png)
+![Data Pipeline Architecture Diagram](https://github.com/Ehan-Ghalib/Spotify-Data-Pipeline-with-AWS-Python/blob/ade0ca3e8ba7a26d5967d6ea0e8c6570a10ee2c4/Spotify%20AWS-Python%20Pipeline%20Diagram.png)
+
+## Key Components
 
 ### Data Ingestion
 
-- A CloudWatch-triggered AWS Lambda function extracts Top 100 playlist data from the Spotify API.
-- Raw JSON files are deposited in an S3 bucket for further processing.
+- A CloudWatch-triggered AWS Lambda function extracts data from the Spotify API for the Top 100 playlist.
+- The function loads raw JSON data into an S3 bucket for further processing.
 
 ### Data Transformation
 
-- An S3 event triggers a second Lambda function that parses the raw JSON into structured CSV files for artists, albums, and tracks.
-- These transformed files are stored in dedicated folders within S3.
-
-### Data Loading into Snowflake
-
-- An SQS notification alerts Snowflake whenever new files land in S3.
-- Snowpipe automatically ingests the files into Snowflake tables, ensuring near-real-time availability of the latest data.
+- An S3 trigger initiates a second Lambda function, which parses and transforms the raw data into structured datasets for artists, albums, and tracks.
+- These transformed datasets are saved in dedicated folders within S3.
 
 ### Data Cataloging and Analysis
 
-- AWS Glue Crawlers catalog the structured data, populating the Glue Data Catalog.
-- Amazon Athena provides immediate querying of the S3 data.
-- Snowflake hosts a consolidated view for deeper analysis and advanced reporting.
+- AWS Glue Crawler automatically catalogs the transformed data, creating metadata in the Glue Data Catalog.
+- Amazon Athena enables querying and analyzing the cataloged data, providing insights directly from S3 without requiring ETL to a traditional database.
 
 ## Outcomes
 
-- Serverless architecture and auto-ingestion pipelines minimize operational overhead.
-- Data is readily available for analytics in both Athena and Snowflake.
-- End-to-end automation reduces manual intervention, enabling agile data exploration.
+- Created structured datasets for artists, albums, and tracks, enabling further analysis.
+- Leveraged serverless architecture to achieve cost-efficiency and automated scaling.
+- Enabled end-to-end data flow and seamless querying of music data using Athena, removing the need for manual intervention.
 
-This project showcases how AWS and Snowflake can work in tandem to build scalable, cost-effective data pipelines that deliver timely insights.
-
-#Snowpipe, #Serverless, #Data Pipeline, #Near-Real Time
+This project demonstrates how AWS services can be integrated to build robust data pipelines and analyze data efficiently. It highlights practical applications of serverless computing, data transformation, and cloud-based analytics in real-world use cases.
